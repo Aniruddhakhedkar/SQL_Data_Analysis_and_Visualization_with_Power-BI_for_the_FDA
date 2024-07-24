@@ -4,7 +4,7 @@
 
 The project deals with the analysis of U.S. FDA data, to identify a detailed approval trends and segmentation analysis based on drug marketing status using SQL. This analysis delves into product identification, therapeutic classes, and evolving approval patterns.
 
-Firstly, data is retrieved from SQL to capture essential insights (Task-1). Next, Power BI is employed to create intuitive dashboards that effectively visualize these findings (Task-2)
+Firstly, data is retrieved from SQL to capture essential insights (Task-1). Next, Power BI is employed to create intuitive dashboards that effectively visualize these findings (Task-2).
 
 ### Tools/Software:-SQL, Power BI, and Microsoft PowerPoint
 
