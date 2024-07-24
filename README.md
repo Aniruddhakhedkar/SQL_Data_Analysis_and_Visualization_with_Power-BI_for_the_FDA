@@ -34,10 +34,9 @@ Task 4: Exploring Therapeutic Classes and Approval Trends
 
 #### Part - 2 Power BI Visualizations:
 
-i. Visualize the yearly approval trends of drugs. Highlight any significant patterns and/or fluctuations, if any.
-ii. Explore approval trends over the years based on different sponsors. Uncover patterns and changes in approval rates among sponsors.
-iii. Visualize the segmentation of products based on MarketingStatus. 
-iv. Show the total number of applications for each MarketingStatus. Enable users to filter by years and MarketingStatus for detailed analysis.
-
-v. Analyze the grouping of drugs by dosage form. Visualize the distribution of approvals across different forms. Identify the most successful dosage form.
-vi. Visualize drug approvals based on therapeutic classes. Identify classes with the highest number of approvals.
+1) Visualize the yearly approval trends of drugs. Highlight any significant patterns and/or fluctuations, if any.
+2) Explore approval trends over the years based on different sponsors. Uncover patterns and changes in approval rates among sponsors.
+3) Visualize the segmentation of products based on MarketingStatus. 
+4) Show the total number of applications for each MarketingStatus. Enable users to filter by years and MarketingStatus for detailed analysis.
+5) Analyze the grouping of drugs by dosage form. Visualize the distribution of approvals across different forms. Identify the most successful dosage form.
+6) Visualize drug approvals based on therapeutic classes. Identify classes with the highest number of approvals.
