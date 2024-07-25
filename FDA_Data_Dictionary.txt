@@ -1,0 +1,244 @@
+### FDA Data Dictionary
+
+#### 1) ReviewClass_Lookup
+ReviewClassID:
+Data Type: INTEGER
+Description: Unique identifier for each review class.
+Constraints: Primary key of the table.
+ReviewCode:
+Data Type: VARCHAR(250)
+Description: Code associated with the review class.
+Constraints: Should be unique across all records.
+LongDescription:
+Data Type: VARCHAR(250)
+Description: Long description or full description of the review class.
+Constraints: None specified.
+ShortDescription:
+Data Type: VARCHAR(250)
+Description: Short description or abbreviation of the review class.
+Constraints: None specified.
+
+#### 2) ChemTypeLookup
+ChemicalTypeID:
+Data Type: INTEGER
+Description: Unique identifier for each chemical type.
+Constraints: Primary key of the table.
+ChemicalTypeCode:
+Data Type: INTEGER
+Description: Code associated with the chemical type.
+Constraints: Indexed for faster retrieval.
+ChemicalTypeDescription:
+Data Type: VARCHAR(250)
+Description: Description of the chemical type.
+Constraints: None specified.
+
+#### 3) Application
+ApplNo:
+Data Type: INTEGER
+Description: Unique identifier for each application.
+Constraints: Primary key of the table.
+ApplType:
+Data Type: VARCHAR(250)
+Description: Type of application.
+Constraints: None specified.
+SponsorApplicant:
+Data Type: VARCHAR(250)
+Description: Name of the sponsor or applicant.
+Constraints: None specified.
+MostRecentLabelAvailableFlag:
+Data Type: VARCHAR(250)
+Description: Flag indicating whether the most recent label is available.
+Constraints: None specified.
+CurrentPatentFlag:
+Data Type: VARCHAR(250)
+Description: Flag indicating the current patent status.
+Constraints: None specified.
+ActionType:
+Data Type: VARCHAR(250)
+Description: Type of action associated with the application.
+Constraints: Indexed for faster retrieval.
+Chemical_Type:
+Data Type: INTEGER
+Description: Foreign key referencing the ChemTypeLookup table, representing the type of
+chemical.
+Constraints: Foreign key referencing ChemTypeLookup table's ChemicalTypeCode.
+Ther_Potential:
+Data Type: VARCHAR(250)
+Description: Potential therapeutic review class associated with the application.
+Constraints: Foreign key referencing ReviewClass_Lookup table's ReviewCode.
+Orphan_Code:
+Data Type: VARCHAR(250)
+Description: Orphan review code associated with the application.
+Constraints: Foreign key referencing ReviewClass_Lookup table's ReviewCode.
+
+Different types of Appltype-
+N: This type typically refers to a New Drug Application (NDA). An NDA is a formal proposal made by a pharmaceutical company to the FDA for the review and approval of a new drug product. It includes comprehensive data on the drug's chemistry, manufacturing, pharmacology, clinical trials, and proposed labeling.
+A: This type typically refers to an Abbreviated New Drug Application (ANDA). An ANDA is a submission to the FDA for the review and approval of a generic drug product. Unlike an NDA, an ANDA relies on the safety and efficacy data of a previously approved
+brand-name drug (reference listed drug).
+B: This type typically refers to a Biologics License Application (BLA). A BLA is a submission to the FDA for the review and approval of a biological product. Biological products include vaccines, blood and blood components, allergenics, somatic cells, gene therapy, tissues, and recombinant therapeutic proteins.
+
+Different type of Actiontype-
+AP: This action type likely stands for "Approval." It indicates that the FDA has approved the application for the drug or biological product. Once an application receives approval, the product can be marketed and sold to consumers.
+TA: This action type may stand for "Therapeutic Area." It could indicate that the application is related to a specific therapeutic area or medical specialty. However, without further context or information, the exact meaning of this action type may vary.
+
+#### 4) Product
+ApplNo:
+Data Type: INTEGER
+Description: Unique identifier for the application associated with the product.
+Constraints: Primary and foreign keys referencing the ApplNo column in the
+Application table.
+ProductNo:
+Data Type: INTEGER
+Description: Unique identifier for each product associated with an application.
+Constraints: Primary key along with ApplNo and ProductMktStatus.
+Form:
+Data Type: VARCHAR(250)
+Description: Formulation or dosage form of the product.
+Constraints: None specified.
+Dosage:
+Data Type: VARCHAR(250)
+Description: Dosage strength or concentration of the product.
+Constraints: None specified.
+ProductMktStatus:
+Data Type: INTEGER
+Description: Market status of the product.
+Constraints: Indexed for faster retrieval.
+TECode:
+Data Type: VARCHAR(250)
+Description: Therapeutic equivalence code.
+Constraints: Indexed for faster retrieval.
+ReferenceDrug:
+Data Type: INTEGER
+Description: Indicates whether the product is a reference drug (usually for generic
+products).
+Constraints: None specified.
+Drugname:
+Data Type: VARCHAR(200)
+Description: Name of the drug or product.
+Constraints: None specified.
+activeingred:
+Data Type: VARCHAR(250)
+Description: Active ingredient(s) present in the product.
+Constraints: None specified
+
+Different Product Market Status
+1 - Marketed: Products with this status are currently on the market and available for sale to consumers. They have completed regulatory approvals and are actively marketed and distributed by the manufacturer or sponsor. These products are typically sold in pharmacies, hospitals, or other healthcare settings.
+2 - Withdrawn: Products with this status have been withdrawn or removed from the market. This withdrawal could be voluntary by the manufacturer due to safety concerns, lack of effectiveness, or commercial reasons. Regulatory agencies could also mandate it due to safety issues or non-compliance with regulations.
+3 - Pending: Products with this status are pending regulatory approval or undergoing review by regulatory agencies. They have yet to receive market authorization and are not available for sale to consumers. This status indicates that the product is under regulatory review and may require additional data or information before approval.
+4 - Pre-Market: Products with this status are in the pre-market phase, meaning they are not yet available for sale but are in development or awaiting regulatory approval. They may be undergoing clinical trials, manufacturing scale-up, or regulatory submissions. This status indicates that the product is being prepared for market launch in the future.
+
+#### 5) AppDocType_Lookup
+AppDocType:
+Data Type: VARCHAR(250)
+Description: Type of application document.
+Constraints: Primary key of the table.
+SortOrder:
+Data Type: INTEGER
+Description: Order in which the application documents should be sorted.
+Constraints: None specified.
+
+#### 6) DocType_Lookup
+DocType:
+Data Type: VARCHAR(250)
+Description: Type of document.
+Constraints: Primary key of the table.
+DocTypeDesc:
+Data Type: VARCHAR(250)
+Description: Description of the document type.
+Constraints: None specified
+
+#### 7) Product_tecode
+ApplNo:
+Data Type: INTEGER
+Description: Unique identifier for the application associated with the product. 
+Constraints: Foreign key referencing the ApplNo column in the Product table.
+ProductNo:
+Data Type: INTEGER
+Description: Unique identifier for each product associated with an application.
+Constraints: Foreign key referencing the ProductNo column in the Product table.
+TECode:
+Data Type: VARCHAR(250)
+Description: Therapeutic equivalence code associated with the product.
+Constraints: Foreign key referencing the TECode column in the Product table.
+TESequence:
+Data Type: INTEGER
+Description: Sequence number for therapeutic equivalence codes associated with the
+product.
+Constraints: None specified.
+ProductMktStatus:
+Data Type: INTEGER
+Description: Market status of the product associated with the therapeutic equivalence
+code.
+Constraints: Foreign key referencing the ProductMktStatus column in the Product
+table.
+
+#### 8) RegActionDate
+ApplNo:
+Data Type: INTEGER
+Description: Unique identifier for the application.
+Constraints: Foreign key referencing the ApplNo column in the Application table.
+ActionType:
+Data Type: VARCHAR(250)
+Description: Type of action associated with the application.
+Constraints: Foreign key referencing the ActionType column in the Application table.
+InDocTypeSeqNo:
+Data Type: INTEGER
+Description: Sequence number for the document type associated with the regulatory
+action.
+Constraints: Indexed for faster retrieval.
+DuplicateCounter:
+Data Type: INTEGER
+Description: Counter for duplicate records or actions.
+Constraints: Indexed for faster retrieval.
+ActionDate:
+Data Type: VARCHAR(250)
+Description: Date of the regulatory action.
+Constraints: Indexed for faster retrieval.
+DocType:
+Data Type: VARCHAR(250)
+Description: Type of document associated with the regulatory action.
+Constraints: Foreign key referencing the DocType column in the DocType_lookup
+table.
+
+#### 9) AppDoc
+AppDocID:
+Data Type: INTEGER
+Description: Unique identifier for each application document.
+Constraints: Primary key of the table.
+ApplNo:
+Data Type: INTEGER
+Description: Unique identifier for the application associated with the document.
+Constraints: Foreign key referencing the ApplNo column in the RegActionDate table.
+SeqNo:
+Data Type: INTEGER
+Description: Sequence number associated with the document.
+Constraints: Foreign key referencing the InDocTypeSeqNo column in the
+RegActionDate table.
+DocType:
+Data Type: VARCHAR(250)
+Description: Type of document.
+Constraints: Foreign key referencing the AppDocType_Lookup table's AppDocType
+column.
+DocTitle:
+Data Type: VARCHAR(250)
+Description: Title or name of the document.
+Constraints: None specified.
+DocURL:
+Data Type: VARCHAR(200)
+Description: URL or link to access the document.
+Constraints: None specified.
+DocDate:
+Data Type: VARCHAR(250)
+Description: Date associated with the document.
+Constraints: Foreign key referencing the ActionDate column in the RegActionDate
+table.
+ActionType:
+Data Type: VARCHAR(250)
+Description: Type of action associated with the document.
+Constraints: Foreign key referencing the ActionType column in the RegActionDate
+table.
+DuplicateCounter:
+Data Type: INTEGER
+Description: Counter for duplicate records or actions associated with the document.
+Constraints: Foreign key referencing the DuplicateCounter column in the
+RegActionDate table
