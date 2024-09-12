@@ -40,3 +40,14 @@ Task 4: Exploring Therapeutic Classes and Approval Trends
 4) Show the total number of applications for each MarketingStatus. Enable users to filter by years and MarketingStatus for detailed analysis.
 5) Analyze the grouping of drugs by dosage form. Visualize the distribution of approvals across different forms. Identify the most successful dosage form.
 6) Visualize drug approvals based on therapeutic classes. Identify classes with the highest number of approvals.
+
+### Findings-
+
+1) Total no of applications from drug sponsors for drugs and their rate of approval from FDA end is also increasing, till 2002.
+2) Post 2002, there is a sudden decrease in the total no of applications and approvals from FDA.
+3) After Mid 1985’s there can be seen a rise in drug approval application, for specific therapeutic area. 
+4) More no of applicants can be seen applying to receive drug approvals.
+5) Low & Mid dosage drugs are likely to get fast approvals from FDA.
+6) AB, AP, and the AA are the therapeutic classes which had received highest no of approvals. 
+7) Tablet Form of drug and Oral-Type of dosage, had received highest approvals.
+8) Most of the products were in the state of being marketed or in the state of pending.
