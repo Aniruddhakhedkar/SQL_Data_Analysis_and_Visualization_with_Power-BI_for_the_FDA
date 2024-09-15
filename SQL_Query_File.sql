@@ -32,11 +32,9 @@ COUNT(YEAR(r.actiondate)) AS "Total Approvals"
 FROM regactiondate as r INNER JOIN application AS a ON r.applno = a.applno
 WHERE ((r.actiontype = "AP") AND (YEAR(r.actiondate) BETWEEN 1939 AND 1960))
 GROUP BY (a.sponsorapplicant) ORDER BY (COUNT(YEAR(r.actiondate))) DESC;
-
+------------------------------------------------------------------------------------------------------------------------------------------
 ###TASK-2 (Segmentation Analysis Based on Drug MarketingStatus)
-#Question-1 (Group products based on MarketingStatus. Provide meaningful insights into the segmentation patterns)
-
-#----------------------------- Meaningful insights into the segmentation patterns is showcased below----------------------------
+#Question-1 Provide meaningful insights into the segmentation patterns
 
 CREATE VIEW impattribute AS
 SELECT r.actiondate, d.doctypedesc, r.doctype, a.applno, a.appltype, a.sponsorapplicant, a.chemical_type, a.actiontype, 
@@ -46,7 +44,7 @@ ON a.applno=r.applno AND a.applno=p.applno AND r.doctype=d.doctype;
 
 SELECT * FROM impattribute;
 
-#Note- For FDA approval of drug i.e. action type is the most important decision. Hence, most of the application segmentation carried out around the action type criteria.
+#Note- For FDA, approval of drug i.e. action type is the most important decision. Hence, most of the application segmentation carried out around the action type criteria.
 
 # Segmentation Criteria 1- Segmentation of drugs based on application type, document description, and actiontype
 
@@ -56,7 +54,7 @@ FROM impattribute
 GROUP BY actiontype, appltype, doctypedesc
 ORDER BY actiontype DESC;
 
-# Segmentation Criteria 2- Segmentation of drugs based on product market status, sponsor applicant, and action type.
+# Segmentation Criteria 2- Segmentation of drugs based on product market status, and action type.
 
 SELECT COUNT(applno) AS "Tota_no_of_Drugs", productmktstatus AS "Marketing_Status_of_Product", actiontype AS "Type_of_Action"
 FROM impattribute
@@ -65,7 +63,7 @@ ORDER BY COUNT(applno) DESC;
 
 # Segmentation Criteria 3- Segmentation of drugs based on drug composition.
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", activeingred AS "Ingredient_in_the_Drug"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", activeingred AS "Ingredient_in_the_Drug"
 FROM impattribute
 GROUP BY activeingred
 ORDER BY COUNT(applno) DESC;
@@ -108,6 +106,7 @@ ON a.applno = p.applno AND a.applno = r.applno
 WHERE p.productmktstatus = 
 (SELECT productmktstatus FROM product GROUP BY productmktstatus ORDER BY COUNT(applno) DESC LIMIT 1)
 GROUP BY YEAR(r.actiondate);
+------------------------------------------------------------------------------------------------------------------------------------------
 
 ### TASK-3 (Analyzing Products)
 #Question-1 Categorize Products by dosage form and analyze their distribution.
@@ -128,6 +127,7 @@ SELECT p.productno, p.form, YEAR (r.actiondate) as "Approval_Year",COUNT(r.appln
 FROM regactiondate AS r INNER JOIN product AS pn ON r.applno = p.applno
 GROUP BY p.form, p.productno, YEAR(r.actiondate)
 ORDER BY "Total_Approval_No" DESC;
+------------------------------------------------------------------------------------------------------------------------------------------
 
 ###TASK-4 Exploring Therapeutic Classes and Approval Trends
 #Question-1 Analyze drug approvals based on therapeutic evaluation code (TE_Code)
@@ -142,16 +142,4 @@ FROM application AS a INNER JOIN regactiondate AS r INNER JOIN product AS p ON a
 WHERE a.actiontype = "AP"
 GROUP BY p.tecode, YEAR(r.actiondate)
 ORDER BY "Total_approvals_Received" DESC;
-
-
-
-
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------------------------
