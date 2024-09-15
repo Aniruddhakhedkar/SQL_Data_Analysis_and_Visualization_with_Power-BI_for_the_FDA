@@ -48,7 +48,7 @@ SELECT * FROM impattribute;
 
 # Segmentation Criteria 1- Segmentation of drugs based on application type, document description, and actiontype
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", appltype AS "Type_of_Application", 
+SELECT COUNT(applno) AS "Total_no_of_Drugs", appltype AS "Type_of_Application", 
 		actiontype AS "Type_of_Action", doctypedesc AS "Description_of_the_Document" 
 FROM impattribute 
 GROUP BY actiontype, appltype, doctypedesc
@@ -56,7 +56,7 @@ ORDER BY actiontype DESC;
 
 # Segmentation Criteria 2- Segmentation of drugs based on product market status, and action type.
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", productmktstatus AS "Marketing_Status_of_Product", actiontype AS "Type_of_Action"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", productmktstatus AS "Marketing_Status_of_Product", actiontype AS "Type_of_Action"
 FROM impattribute
 GROUP BY productmktstatus, actiontype
 ORDER BY COUNT(applno) DESC;
@@ -68,24 +68,24 @@ FROM impattribute
 GROUP BY activeingred
 ORDER BY COUNT(applno) DESC;
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", chemical_type AS "Type_of_Chemical"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", chemical_type AS "Type_of_Chemical"
 FROM impattribute
 GROUP BY chemical_type
 ORDER BY COUNT(applno) DESC;
 
-# Segmentation Criteria 4- Segmentation of drugs based on from, dosage of drug, and action type.
+# Segmentation Criteria 4- Segmentation of drugs based on form, dosage of drug, and action type.
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", form AS "Form_of_Drug"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", form AS "Form_of_Drug"
 FROM impattribute
 GROUP BY form
 ORDER BY COUNT(applno) DESC;
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", dosage AS "Form_of_Drug"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", dosage AS "Form_of_Drug"
 FROM impattribute
 GROUP BY dosage
 ORDER BY COUNT(applno) DESC;
 
-SELECT COUNT(applno) AS "Tota_no_of_Drugs", dosage AS "Form_of_Drug", form AS "Form_of_Drug"
+SELECT COUNT(applno) AS "Total_no_of_Drugs", dosage AS "Form_of_Drug", form AS "Form_of_Drug"
 FROM impattribute
 GROUP BY dosage, form
 ORDER BY COUNT(applno) DESC;
