@@ -36,14 +36,61 @@ GROUP BY (a.sponsorapplicant) ORDER BY (COUNT(YEAR(r.actiondate))) DESC;
 ###TASK-2 (Segmentation Analysis Based on Drug MarketingStatus)
 #Question-1 (Group products based on MarketingStatus. Provide meaningful insights into the segmentation patterns)
 
-#Group products based on MarketingStatus
-SELECT productmktstatus AS "Product Market Status" , 
-COUNT(productmktstatus) AS "Products to be Marketed Under Different Categories"
-FROM product GROUP BY productmktstatus;
+#----------------------------- Meaningful insights into the segmentation patterns is showcased below----------------------------
 
-#Provide meaningful insights into the segmentation patterns.
-SELECT productmktstatus, productno FROM product;
-SELECT appltype, actiontype FROM application;
+CREATE VIEW impattribute AS
+SELECT r.actiondate, d.doctypedesc, r.doctype, a.applno, a.appltype, a.sponsorapplicant, a.chemical_type, a.actiontype, 
+	   p.form, p.dosage, p.productmktstatus, p.drugname, p.activeingred
+FROM regactiondate AS r INNER JOIN application AS a INNER JOIN product AS p INNER JOIN doctype_lookup AS d
+ON a.applno=r.applno AND a.applno=p.applno AND r.doctype=d.doctype;
+
+SELECT * FROM impattribute;
+
+#Note- For FDA approval of drug i.e. action type is the most important decision. Hence, most of the application segmentation carried out around the action type criteria.
+
+# Segmentation Criteria 1- Segmentation of drugs based on application type, document description, and actiontype
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", appltype AS "Type_of_Application", 
+		actiontype AS "Type_of_Action", doctypedesc AS "Description_of_the_Document" 
+FROM impattribute 
+GROUP BY actiontype, appltype, doctypedesc
+ORDER BY actiontype DESC;
+
+# Segmentation Criteria 2- Segmentation of drugs based on product market status, sponsor applicant, and action type.
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", productmktstatus AS "Marketing_Status_of_Product", actiontype AS "Type_of_Action"
+FROM impattribute
+GROUP BY productmktstatus, actiontype
+ORDER BY COUNT(applno) DESC;
+
+# Segmentation Criteria 3- Segmentation of drugs based on drug composition.
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", activeingred AS "Ingredient_in_the_Drug"
+FROM impattribute
+GROUP BY activeingred
+ORDER BY COUNT(applno) DESC;
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", chemical_type AS "Type_of_Chemical"
+FROM impattribute
+GROUP BY chemical_type
+ORDER BY COUNT(applno) DESC;
+
+# Segmentation Criteria 4- Segmentation of drugs based on from, dosage of drug, and action type.
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", form AS "Form_of_Drug"
+FROM impattribute
+GROUP BY form
+ORDER BY COUNT(applno) DESC;
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", dosage AS "Form_of_Drug"
+FROM impattribute
+GROUP BY dosage
+ORDER BY COUNT(applno) DESC;
+
+SELECT COUNT(applno) AS "Tota_no_of_Drugs", dosage AS "Form_of_Drug", form AS "Form_of_Drug"
+FROM impattribute
+GROUP BY dosage, form
+ORDER BY COUNT(applno) DESC;
 
 #Question-2 Calculate the total number of applications for each MarketingStatus year-wise after the year 2010.
 SELECT COUNT(p.applno) AS "Total No of Application", p.productmktstatus AS "Marketing Status of the Product", 
