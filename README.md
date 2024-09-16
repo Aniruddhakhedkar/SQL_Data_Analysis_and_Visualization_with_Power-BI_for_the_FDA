@@ -1,4 +1,4 @@
-# Project Title:- SQL Data Analysis and Visualization with Power BI for the U.S. Food & Drug Administration Agency (FDA)
+# Project Title:- SQL Data Analysis and Visualization with Power BI for the U.S. Food & Drug Administration Agency (FDA) 
 
 ### Project Description:- 
 
