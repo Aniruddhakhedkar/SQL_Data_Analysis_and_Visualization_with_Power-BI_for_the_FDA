@@ -91,21 +91,18 @@ GROUP BY dosage, form
 ORDER BY COUNT(applno) DESC;
 
 #Question-2 Calculate the total number of applications for each MarketingStatus year-wise after the year 2010.
-SELECT COUNT(p.applno) AS "Total No of Application", p.productmktstatus AS "Marketing Status of the Product", 
-YEAR(r.actiondate) AS "Year"
-FROM product AS p INNER JOIN application AS a INNER JOIN regactiondate AS r 
-ON p.applno = a.applno AND a.applno = r.applno
-WHERE (YEAR(r.actiondate)>2010)
-GROUP BY p.productmktstatus,YEAR(r.actiondate) ORDER BY (YEAR(r.actiondate)) ASC;
+SELECT COUNT(applno) AS "Tota_no_of_Applications", productmktstatus AS "Marketing_Status_of_Product", YEAR(actiondate) AS "Year"
+FROM impattribute
+WHERE YEAR(actiondate) > 2010
+GROUP BY productmktstatus, YEAR(actiondate)
+ORDER BY productmktstatus DESC;
 
 #Question-3 Identify the top MarketingStatus with the maximum number of applications and analyze its trend over time.
-SELECT DISTINCT (YEAR(r.actiondate)) AS "YEAR", COUNT(p.applno) AS "Total_No_of_Applications", 
-DENSE_RANK() OVER (ORDER BY COUNT(p.applno) DESC) AS "Rank_Order"
-FROM product AS p INNER JOIN application AS a INNER JOIN regactiondate AS r 
-ON a.applno = p.applno AND a.applno = r.applno
-WHERE p.productmktstatus = 
-(SELECT productmktstatus FROM product GROUP BY productmktstatus ORDER BY COUNT(applno) DESC LIMIT 1)
-GROUP BY YEAR(r.actiondate);
+SELECT COUNT(applno) AS "Tota_no_of_Applications",  
+	   productmktstatus AS "Marketing_Status_of_Product", YEAR(actiondate) AS "Year"
+FROM impattribute
+GROUP BY productmktstatus, YEAR(actiondate)
+ORDER BY YEAR(actiondate) DESC, productmktstatus ASC;
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 ### TASK-3 (Analyzing Products)
