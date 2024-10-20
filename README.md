@@ -43,8 +43,8 @@ Task 4: Exploring Therapeutic Classes and Approval Trends
 
 ### Findings-
 
-1) Total no of applications from drug sponsors for drugs and their rate of approval from FDA end is also increasing, till 2002.
-2) Post 2002, there is a sudden decrease in the total no of applications and approvals from FDA.
+1) Total no of applications from drug sponsors for drugs and their rate of approval from FDA end is also increasing, till 2002
+2) Post 2002, there is a sudden decrease in the total no of applications and approvals from FDA
 3) After Mid 1985’s there can be seen a rise in drug approval application, for specific therapeutic area. 
 4) More no of applicants can be seen applying to receive drug approvals.
 5) Low & Mid dosage drugs are likely to get fast approvals from FDA.
